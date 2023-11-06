@@ -37,7 +37,7 @@ function onClick(evnt) {
 };
 
 function markInput(arr) {
-    const gag = [{ name: "вибери породу" }, ...arr];
+    const gag = [{ name: "виберай коте" }, ...arr];
     return gag.map(({ id, name }) =>
         `<option value="${id}">${name}</option>`
     ).join('');
