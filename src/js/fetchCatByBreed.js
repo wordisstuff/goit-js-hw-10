@@ -1,5 +1,5 @@
 
-export function fetchCatByBreed(breedId, domCatInfo, markFunkInfo) {
+export function fetchCatByBreed(breedId, domCatInfo, markInfoFunc, error) {
     return fetch(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
         .then((resp) => {
             if (!resp.ok) {
@@ -8,7 +8,6 @@ export function fetchCatByBreed(breedId, domCatInfo, markFunkInfo) {
             return resp.json();
         })
         .then((data) => {
-            return domCatInfo.innerHTML = markFunkInfo(data)
+            return domCatInfo.innerHTML = markInfoFunc(data);
         })
-        .catch((err) => console.log(err));
 };

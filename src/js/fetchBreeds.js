@@ -6,11 +6,10 @@ export function fetchBreeds(domCatInput, funkMarkInput) {
             if (!resp.ok) {
                 throw new Error(resp.statusText)
             }
-            return resp.json()
+            return resp.json();
         })
         .then((data) => {
-            dataInfo = data.map(e => e)
-            // console.log(dataInfo);
+            dataInfo = data.map(e => e);
             return domCatInput.innerHTML = funkMarkInput(data);
-        }).catch((err) => console.log(err));
+        });
 };

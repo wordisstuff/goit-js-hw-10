@@ -1,33 +1,42 @@
 
 import { fetchCatByBreed } from "./fetchCatByBreed";
 import { fetchBreeds, dataInfo } from "./fetchBreeds";
+const error = document.querySelector('.error');
 
+const loader = document.querySelector('.loader');
 let select = document.querySelector('.breed-select');
+
 export const catInfo = document.querySelector('.cat-info');
 
-hideLoader();
-fetchBreeds(select, markInput);
+
+fetchBreeds(select, markInput).then((data) => {
+    showBreedLoader();
+})
+    .catch((err) => showError());
 
 const InfoObject = {
     description: "немає інфи", name: "немає інфи", temperament: "немає інфи", cfa_url: "", reference_image_id: ""
 };
 
-select.addEventListener('change', onClick);
+select.addEventListener('change', onClick)
 function onClick(evnt) {
     evnt.preventDefault();
     let InfoId = [...dataInfo];
     const value = evnt.currentTarget.value;
-    console.log(evnt.currentTarget.name);
     InfoId.map(o => {
         if (o.id === value) {
-            console.log(o.id);
             InfoObject.description = o.description;
             InfoObject.name = o.name;
             InfoObject.temperament = o.temperament;
             InfoObject.cfa_url = o.cfa_url
         };
     });
-    return fetchCatByBreed(InfoObject.reference_image_id, catInfo, markInfo);
+    fetchCatByBreed(value, catInfo, markInfo, showError).then(() => {
+
+    }).catch((err) => showError());
+    if (value) {
+        showCatLoader();
+    };
 };
 
 function markInput(arr) {
@@ -37,10 +46,8 @@ function markInput(arr) {
     ).join('');
 };
 
-
-
 function markInfo(arr) {
-    console.log(arr);
+    hideCatLoader()
     return arr.map(({ url, }) =>
         `<img src="${url}" alt="" width="400">
         <h2>${InfoObject.name}</h2>
@@ -52,10 +59,23 @@ function markInfo(arr) {
 };
 
 
-function hideLoader() {
-    document.querySelector('.loader').classList.add('visible');
-};
+function showBreedLoader() {
+    select.classList.add('visible');
+    loader.classList.add('hidden');
+}
 
-function showLoader() {
-    document.querySelector('.loader').classList.remove('visible');
-};
+function showCatLoader() {
+    catInfo.classList.add('hidden');
+    loader.classList.remove('hidden');
+}
+
+function hideCatLoader() {
+    loader.classList.add('hidden');
+    catInfo.classList.remove('hidden');
+}
+
+function showError() {
+    select.classList.add('hidden');
+    loader.classList.add('hidden');
+    error.classList.add('showError');
+}

@@ -1,3 +1,23 @@
-.visible {
+/* .visible {
     display: none;
+} */
+.breed-select {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    display: none;
+    color: red;
+}
+
+.showError {
+    display: block;
 }
