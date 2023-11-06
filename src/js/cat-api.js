@@ -1,11 +1,10 @@
 
 import { fetchCatByBreed } from "./fetchCatByBreed";
 import { fetchBreeds, dataInfo } from "./fetchBreeds";
-const error = document.querySelector('.error');
+import { showBreedLoader, showCatLoader, hideCatLoader, showError } from "./showHideFunction"
 
-const loader = document.querySelector('.loader');
-let select = document.querySelector('.breed-select');
 
+export let select = document.querySelector('.breed-select');
 export const catInfo = document.querySelector('.cat-info');
 
 
@@ -55,25 +54,3 @@ function markInfo(arr) {
         `
     ).join('');
 };
-
-
-function showBreedLoader() {
-    select.classList.add('visible');
-    loader.classList.add('hidden');
-}
-
-function showCatLoader() {
-    catInfo.classList.add('hidden');
-    loader.classList.remove('hidden');
-}
-
-function hideCatLoader() {
-    loader.classList.add('hidden');
-    catInfo.classList.remove('hidden');
-}
-
-function showError() {
-    select.classList.add('hidden');
-    loader.classList.add('hidden');
-    error.classList.add('showError');
-}
