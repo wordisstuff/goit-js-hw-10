@@ -9,10 +9,10 @@ let select = document.querySelector('.breed-select');
 export const catInfo = document.querySelector('.cat-info');
 
 
-fetchBreeds(select, markInput).then((data) => {
+fetchBreeds(select, markInput).then(() => {
     showBreedLoader();
 })
-    .catch((err) => showError());
+    .catch(() => showError());
 
 const InfoObject = {
     description: "немає інфи", name: "немає інфи", temperament: "немає інфи", cfa_url: "", reference_image_id: ""
