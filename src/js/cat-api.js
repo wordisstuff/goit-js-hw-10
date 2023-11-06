@@ -47,10 +47,11 @@ function markInfo(arr) {
     hideCatLoader()
     return arr.map(({ url, }) =>
         `<img src="${url}" alt="" width="400">
+        <div class="info-box">
         <h2>${InfoObject.name}</h2>
 <p>${InfoObject.description}</p >
 <h4>Temperament:</h4>
-<p>${InfoObject.temperament}</p>
+<p>${InfoObject.temperament}</p></div>
         `
     ).join('');
 };

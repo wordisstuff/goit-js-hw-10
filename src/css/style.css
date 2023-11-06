@@ -1,6 +1,13 @@
-/* .visible {
-    display: none;
-} */
+.cat-info {
+    margin-top: 10px;
+    display: flex;
+}
+
+.info-box {
+    width: 400px;
+    padding-left: 10px;
+}
+
 .breed-select {
     display: none;
 }
