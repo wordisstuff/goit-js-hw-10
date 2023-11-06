@@ -31,9 +31,7 @@ function onClick(evnt) {
             InfoObject.cfa_url = o.cfa_url
         };
     });
-    fetchCatByBreed(value, catInfo, markInfo, showError).then(() => {
-
-    }).catch((err) => showError());
+    fetchCatByBreed(value, catInfo, markInfo, showError);
     if (value) {
         showCatLoader();
     };

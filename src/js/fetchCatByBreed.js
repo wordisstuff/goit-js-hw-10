@@ -9,5 +9,5 @@ export function fetchCatByBreed(breedId, domCatInfo, markInfoFunc, error) {
         })
         .then((data) => {
             return domCatInfo.innerHTML = markInfoFunc(data);
-        })
+        }).catch(() => error());
 };
